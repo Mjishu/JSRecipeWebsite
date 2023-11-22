@@ -1,54 +1,99 @@
-const content  = document.getElementById("content");
 
+const content = document.getElementById("content"); 
+//* This isn't following the TOP as it wants me to create different modules for the tabs but id rather do the project rn then follow to the Tx.x
 
-function pageDescription(evt, tab){
-    const header = document.createElement("h1");
-    header.innerHTML = "Cushy Cottage"
+const unorderedListContainer = document.createElement("ul")
+unorderedListContainer.setAttribute("id", "tabsList")
+content.append(unorderedListContainer)
 
-    const img = document.createElement("img");
-    img.src = "../lake-house.webp"
+const linkTexts = ["Home", "Menu", "About"]
+const linkJump = ['home', 'menu', 'about']
 
-    const details = document.createElement("p");
-    details.innerHTML = "Cottage between worlds, this cottage takes you on a trip from the <br> mountains of europe to the depths of the sea and the wonders of the forest"
+for (i=0;i<3;i++){
+    const tab = document.createElement("li")
+    unorderedListContainer.append(tab)
 
-    
-
-    content.append(header,img,details)
-}
-
-function pageMenu(evt,tab){
-    const header = document.createElement('h1');
-    header.innerHTML = "Menu"
-
-
-}
-
-function pageContact(evt,tab){
-    const header = document.createElement('h1')
-    header.innerHTML = "Contact Us"
-}
-
-const tab = document.createElement("div");
-    tab.classList.add('tab');
-
-content.append(tab)
-
-numTabs = 3
-for (i=0; i<numTabs; i++){
-    const tabLink = document.createElement("button");
-    tabLink.classList.add("tabLink")
-    tabLink.setAttribute('id','tab'+i)
+    const tabLink = document.createElement("a")
+    tabLink.setAttribute('id', "link"+i)
+    tabLink.setAttribute("href", "#"+linkJump[i])
     tab.append(tabLink)
+
+
+    const link0 = document.getElementById("link" + i);
+    link0.innerHTML = linkTexts[i]
 }
 
-const tab0 = document.getElementById('tab'+ 0);
-tab0.setAttribute(onclick, 'openCity(event, "tab0')
 
-const tab1 = document.getElementById('tab'+ 1);
-tab1.setAttribute(onclick, 'openCity(event, "tab1')
+const tabPanels = document.createElement("div")
+tabPanels.setAttribute("id", "tabPanels")
+content.append(tabPanels)
 
-const tab2 = document.getElementById('tab'+ 2);
-tab2.setAttribute(onclick, 'openCity(event, "tab2')
+// Home tab info
+const tabHome = document.createElement("div")
+tabHome.setAttribute('id', 'home')
 
+const headerHome = document.createElement("h1")
+headerHome.innerHTML = "Home";
 
-pageDescription(1,2)
+const bodyHome = document.createElement("p")
+bodyHome.innerHTML = "Drift away from the vistitudes of life and enjoy a peaceful meal wherever you are"
+
+const homeImg = document.createElement("img")
+homeImg.src = "../lake-house.webp"
+homeImg.alt = "Cottage Image"
+
+tabHome.append(headerHome,bodyHome,homeImg)
+
+//Menu Tab info
+const tabMenu = document.createElement("div");
+tabMenu.setAttribute("id", "menu")
+
+const headerMenu = document.createElement("h1")
+headerMenu.innerHTML = "Menu"
+
+tabMenu.append(headerMenu)
+
+//About
+const tabAbout = document.createElement("div")
+tabAbout.setAttribute("id", "about")
+
+const headerAbout = document.createElement("h1");
+headerAbout.innerHTML = "About"
+tabAbout.append(headerAbout)
+
+tabPanels.append(tabHome, tabMenu, tabAbout )
+
+//* Part that makes tabs work
+
+const tabButtons = tabsList.querySelectorAll("a");
+const tabToggler = document.querySelectorAll("#tabPanels > div");
+const tabsContainer = document.getElementById("content")
+
+    // Makes the first tab automatically show up
+tabButtons.forEach((tab,index)=> {
+    if (index === 0){
+
+    } else{
+        tabToggler[index].setAttribute("hidden", "")
+    }
+})
+
+tabsContainer.addEventListener("click", (e) => {
+    const clickedTab = e.target.closest('a');
+    if (!clickedTab) return;
+    e.preventDefault();
+
+   switchTab(clickedTab)
+})
+
+function switchTab(newTab){
+    const activePanelId = newTab.getAttribute("href")
+    const activePanel = tabsContainer.querySelector(activePanelId) //THis is the issue, it just returns null //* FIxed it was an issue with tabsConatiner selecting
+    console.log(activePanelId)
+    console.log(activePanel)
+
+    tabToggler.forEach((panel) => {
+        panel.setAttribute("hidden", true);
+    });
+    activePanel.removeAttribute("hidden")
+}
