@@ -1,3 +1,4 @@
+import "./style.css"
 
 const content = document.getElementById("content"); 
 //* This isn't following the TOP as it wants me to create different modules for the tabs but id rather do the project rn then follow to the Tx.x
@@ -9,7 +10,7 @@ content.append(unorderedListContainer)
 const linkTexts = ["Home", "Menu", "About"]
 const linkJump = ['home', 'menu', 'about']
 
-for (i=0;i<3;i++){
+for (let i=0;i<3;i++){
     const tab = document.createElement("li")
     unorderedListContainer.append(tab)
 
@@ -36,11 +37,19 @@ const headerHome = document.createElement("h1")
 headerHome.innerHTML = "Home";
 
 const bodyHome = document.createElement("p")
-bodyHome.innerHTML = "Drift away from the vistitudes of life and enjoy a peaceful meal wherever you are"
+bodyHome.innerHTML = "Drift away from the vistitudes of life and <br> enjoy a peaceful meal wherever you are"
 
 const homeImg = document.createElement("img")
 homeImg.src = "../lake-house.webp"
 homeImg.alt = "Cottage Image"
+homeImg.setAttribute('id', 'homeImg')
+
+const homeLogo = document.createElement("img")
+homeLogo.src = "../pot-steam-outline.svg"
+homeLogo.alt = "Steam Logo"
+homeLogo.setAttribute("id", 'homeLogo')
+
+content.append(homeLogo)
 
 tabHome.append(headerHome,bodyHome,homeImg)
 
@@ -51,15 +60,26 @@ tabMenu.setAttribute("id", "menu")
 const headerMenu = document.createElement("h1")
 headerMenu.innerHTML = "Menu"
 
-tabMenu.append(headerMenu)
+const bodyMenu = document.createElement('p');
+bodyMenu.innerHTML = "No current Menu Items"
+
+tabMenu.append(headerMenu, bodyMenu)
 
 //About
 const tabAbout = document.createElement("div")
 tabAbout.setAttribute("id", "about")
 
+const bodyAbout = document.createElement("p");
+bodyAbout.innerHTML = "A home away from home, the cottage transports<br> you to wherever you wish"
+bodyAbout.setAttribute("id","bodyAbout")
+
+const detailsAbout = document.createElement("p");
+detailsAbout.innerHTML = "Phone Number: 800-243-1282 <br> Email: CozyCottage@cozy.net"
+detailsAbout.setAttribute("id", "detailsAbout")
+
 const headerAbout = document.createElement("h1");
 headerAbout.innerHTML = "About"
-tabAbout.append(headerAbout)
+tabAbout.append(headerAbout, bodyAbout, detailsAbout)
 
 tabPanels.append(tabHome, tabMenu, tabAbout )
 

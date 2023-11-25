@@ -1,0 +1,86 @@
+:root{
+    --fontMain: Bahnschrift;
+    --fontSub: Cambria Math;
+    --backgroundBody: #F5EFDD; 
+    --shadowBG: #BEB8A4;
+}
+
+body{
+    margin: none;
+    padding: none;
+    font-family: phi;
+    background: var(--backgroundBody) ;
+
+}
+
+#tabsList{
+    display: flex;
+    justify-content: end;
+    list-style-type: none;
+    margin-right: 25px;
+
+}
+
+li{
+    margin: 10px;
+    
+}
+
+a{ text-decoration: none; font-family: var(--fontMain);} 
+
+#tabPanels{
+    text-align: center;
+    margin-top: 100px;
+}
+
+#homeImg {
+    opacity: .9;
+    width: auto;
+    height: 500px;
+    filter: brightness(80%);
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgb(177, 149, 72);
+}
+#home > p {
+    position: absolute;
+    top: 725px;
+    left: 40%;
+    font-size: 20px;
+    font-family: var(--fontSub);
+}
+#homeLogo{
+    height: auto;
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
+#homeLogo :hover{
+    border: 1px burlywood solid;
+    border-radius: 5px;
+}
+h1{
+    font-family: var(--fontMain);
+    text-shadow: 0 5px 5px var(--shadowBG);
+    text-decoration: underline;
+}
+
+#menu > p{
+    font-size: 18px;
+    margin-top: 100px;
+    font-family: var(--fontSub);
+}
+
+#detailsAbout{
+    font-size: 13;
+    font-family: var(--fontSub);
+    position: absolute;
+    bottom: 50px;
+    left: 45%;
+}
+
+#bodyAbout{
+    font-size: 18;
+    font-family: var(--fontMain);
+    margin-top: 50px;
+}
